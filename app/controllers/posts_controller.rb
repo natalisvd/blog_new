@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :authenticate_user!
   def index
     @post = Post.all
   end
@@ -9,7 +10,8 @@ class PostsController < ApplicationController
     @post = Post.new
   end
   def create
-    @post = Post.new(params[:post].permit(:title, :body))
+
+    @post = current_user.posts.new(params[:post].permit(:title, :body))
     @post.save
     redirect_to(@post, :notice => "post create" )
   end

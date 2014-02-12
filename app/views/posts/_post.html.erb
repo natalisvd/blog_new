@@ -1,4 +1,4 @@
 <%= div_for post do %>
-    <h2><%= link_to_unless_current h(post.title), post %></h2>
-    <%=simple_format h(post.body) %>
+    <h2><%= "#{User.find(post.user_id).email}: "%> <br /> <%= link_to_unless_current h(post.title), post %> </h2>
+    <p><%=simple_format h(post.body) %> </p>
 <%end%>
