@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!
   def index
-    @post = Post.all
+    @post = current_user.posts.all
   end
   def show
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
   end
   def new
     @post = Post.new
@@ -17,10 +17,10 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
   end
   def destroy
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
     @post.destroy
     redirect_to(@post)
   end

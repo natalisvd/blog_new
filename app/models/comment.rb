@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
   belongs_to :post
-  belongs_to :user
+  delegate :user, :to => :post
   validates  :body, presence: true,
             length: { minimum: 1 }
 end
